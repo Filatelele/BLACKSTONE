@@ -19,6 +19,19 @@
 	give_bank_account = TRUE
 	min_pq = -10
 
+/datum/job/roguetown/prince/after_spawn(mob/living/L)
+	. = ..()
+	for(var/datum/mind/Q in get_minds("Queen"))
+		var/mob/living/carbon/queenmob = Q.current
+		if(iself(queenmob))
+			L.set_species(/datum/species/human/halfelf)
+
+		if(ishalfelf(queenmob))
+			if(prob(50))
+				L.set_species(/datum/species/human/halfelf)
+			else
+				L.set_species(/datum/species/human/northern)
+
 /datum/outfit/job/roguetown/prince/pre_equip(mob/living/carbon/human/H)
 	..()
 	if(H.gender == MALE)
